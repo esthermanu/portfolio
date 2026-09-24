@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Design tokens — dark / cinematic / warm gold
+   Change the palette here and the whole site follows.
+--------------------------------------------------------------- */
+@theme inline {
+  --color-bg: #050b18;
+  --color-surface: #0a1426;
+  --color-surface-2: #101e36;
+  --color-line: rgba(226, 238, 255, 0.1);
+  --color-line-strong: rgba(226, 238, 255, 0.22);
+  --color-fg: #e9eefb;
+  --color-muted: #94a3bd;
+  --color-faint: #5f6e88;
+
+  /* The network mesh in the background. */
+  --color-node: #7dd3fc;
+  --color-link: #38bdf8;
+  --color-gold: #d9a961;
+  --color-gold-soft: #f2d7a6;
+
+  /* Secondary accent. Rose carries the decorative work — fragments, gradient
+     tails, selection — while gold stays the structural accent. */
+  --color-rose: #f07ab0;
+  --color-rose-soft: #ffd0e5;
+  --color-rose-deep: #b03a6d;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-instrument-serif);
+
+  --animate-drift: drift 26s ease-in-out infinite;
+  --animate-drift-rev: drift 34s ease-in-out infinite reverse;
+  --animate-tumble: tumble 44s ease-in-out infinite;
+  --animate-tumble-rev: tumble 58s ease-in-out infinite reverse;
+  --animate-breathe: breathe 6s ease-in-out infinite;
+  --animate-scroll-hint: scroll-hint 2.4s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(6%, -8%, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-7%, 5%, 0) scale(0.94);
+  }
+}
+
+@keyframes tumble {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(2.5rem, -1.8rem, 0) rotate(14deg);
+  }
+  66% {
+    transform: translate3d(-2rem, 1.6rem, 0) rotate(-11deg);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes scroll-hint {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* --------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    background-image: radial-gradient(
+      ellipse 120% 90% at 50% 0%,
+      #0c1b33 0%,
+      #070f20 45%,
+      #040912 100%
+    );
+    background-attachment: fixed;
+    color: var(--color-fg);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-rose) 45%, transparent);
+    color: var(--color-rose-soft);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), ui-serif, Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #26262e;
+    border-radius: 99px;
+    border: 2px solid var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a45;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* Film-grain overlay, sits above everything, never intercepts clicks */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hairline grid the hero sits on */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(226, 238, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 238, 255, 0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 20%, transparent 78%);
+}
+
+.marquee-track {
+  animation: marquee 34s linear infinite;
+  will-change: transform;
+}
+.marquee-track--rev {
+  animation-direction: reverse;
+}
+.marquee-track--fast {
+  animation-duration: 22s;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.edge-fade {
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Gradient text for display accents. `gold-text` is the house accent;
+   `duo-text` bleeds gold into rose and carries the headline moments. */
+.gold-text,
+.duo-text,
+.blush-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gold-text {
+  background-image: linear-gradient(100deg, #f2d7a6 0%, #d9a961 45%, #a57c3e 100%);
+}
+
+.duo-text {
+  background-image: linear-gradient(
+    100deg,
+    #f2d7a6 0%,
+    #e9a98a 22%,
+    #f07ab0 55%,
+    #ff9ecb 78%,
+    #b03a6d 100%
+  );
+}
+
+.blush-text {
+  background-image: linear-gradient(100deg, #ffd0e5 0%, #f07ab0 48%, #b03a6d 100%);
+}
+
+.glass {
+  background: color-mix(in oklab, var(--color-surface) 70%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* Hide the native cursor only where the custom one actually runs */
+@media (pointer: fine) {
+  body[data-custom-cursor="true"],
+  body[data-custom-cursor="true"] * {
+    cursor: none;
+  }
+}
