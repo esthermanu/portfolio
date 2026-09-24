@@ -38,6 +38,8 @@ export const site = {
   facts: [
     { label: "Based in", value: "Cincinnati, OH" },
     { label: "Studying", value: "BS Electrical Engineering" },
+    { label: "Graduating", value: "May 2028" },
+    { label: "GPA", value: "3.6" },
     { label: "Honors", value: "Dean’s List (2×)" },
     { label: "Currently", value: "Solar cell research" },
   ],
@@ -50,9 +52,9 @@ export const site = {
     { label: "LinkedIn", handle: "/in/estmanu", href: "https://linkedin.com/in/estmanu" },
   ],
 
-  /* ⚠️ Drop a PDF at public/esther-manu-cv.pdf and set this to
-     "/esther-manu-cv.pdf" to switch the résumé buttons back on. */
-  resume: null as string | null,
+  /* The hardware/EE résumé. The software one is not used here: it carries
+     a phone number, and both this repo and the site are public. */
+  resume: "/esther-manu-resume.pdf" as string | null,
 };
 
 /* ---------------------------------------------------------------------------
