@@ -4,6 +4,7 @@ import { motion, useScroll, useSpring } from "motion/react";
 import { useRef } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
+import { asset } from "@/lib/asset";
 import { experience, site } from "@/content/site";
 
 export function Experience() {
@@ -43,13 +44,15 @@ export function Experience() {
                 <div className="md:grid md:grid-cols-[11.5rem_1fr] md:gap-12">
                   {/* Period rail */}
                   <div className="md:pt-1 md:pr-10 md:text-right">
-                    <p
-                      className={`font-mono text-[11px] tracking-[0.16em] uppercase ${
-                        i % 2 === 0 ? "text-gold" : "text-rose"
-                      }`}
-                    >
-                      {job.period}
-                    </p>
+                    {job.period && (
+                      <p
+                        className={`font-mono text-[11px] tracking-[0.16em] uppercase ${
+                          i % 2 === 0 ? "text-gold" : "text-rose"
+                        }`}
+                      >
+                        {job.period}
+                      </p>
+                    )}
                     <p className="mt-1 font-mono text-[10px] tracking-[0.16em] text-faint uppercase">
                       {job.location}
                     </p>
@@ -96,7 +99,7 @@ export function Experience() {
       {site.resume && (
         <Reveal delay={0.1} className="mt-16 md:pl-[11.5rem]">
           <a
-            href={site.resume}
+            href={asset(site.resume)}
             target="_blank"
             rel="noreferrer noopener"
             className="group inline-flex items-center gap-3 text-sm text-muted transition-colors hover:text-gold md:ml-12"

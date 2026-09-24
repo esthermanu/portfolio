@@ -4,8 +4,9 @@
    ============================================================================= */
 
 export const site = {
-  /* ✏️ Replace with the real deployed domain before launch (used for SEO tags) */
-  url: "https://esthermanu.com",
+  /* Deployed to GitHub Pages. If a custom domain is added later, change this
+     and the basePath in next.config.ts together. */
+  url: "https://esthermanu.github.io/portfolio",
 
   name: "Esther Manu",
   initials: "EM",
@@ -140,15 +141,12 @@ export const projects: Project[] = [
     accent: ["#d9a961", "#6b4a1f"],
   },
   {
-    /* ⚠️ Paired with the printed-frame photo from your Drive folder — confirm
-       it is the same project. Your résumé says AutoCAD; the screenshot in that
-       folder shows Tinkercad. */
     title: "Lightweight Drone Frame",
     year: "2025",
     category: "CAD · Agricultural drone",
     summary:
-      "A modular agricultural drone airframe designed in AutoCAD to support precision farming through aerial crop monitoring. Structural load analysis and design validation improved flight stability and payload capacity, and an integrated camera and NDVI imaging system captures crop health data so farmers can spot plant stress early.",
-    stack: ["AutoCAD", "Python", "OpenCV", "MATLAB"],
+      "A modular agricultural drone airframe designed in Tinkercad to support precision farming through aerial crop monitoring. Structural load analysis and design validation improved flight stability and payload capacity, and an integrated camera and NDVI imaging system captures crop health data so farmers can spot plant stress early.",
+    stack: ["Tinkercad", "Python", "OpenCV", "MATLAB"],
     href: null,
     repo: null,
     image: "/projects/quadcopter-print.jpg",
@@ -225,10 +223,10 @@ export const experience = [
     ],
   },
   {
-    /* ⚠️ Your software résumé gives no dates for this role — please add them. */
     role: "Student Software Developer",
     company: "UC ITS Web Development Team",
-    period: "Dates needed",
+    /* No dates on the résumé for this one; the timeline omits the label. */
+    period: "",
     location: "Cincinnati, OH",
     points: [
       "Maintain Srvmon, a mission-critical Next.js and Express platform monitoring 5,000+ classroom technologies and IT assets.",
@@ -237,10 +235,9 @@ export const experience = [
     ],
   },
   {
-    /* ⚠️ Your software résumé gives no dates for this role — please add them. */
     role: "Web Developer",
     company: "Voice Of God Ministries",
-    period: "Dates needed",
+    period: "",
     location: "Connecticut",
     points: [
       "Built and launched a church management platform in React and Node.js, automating member, event and donation workflows and cutting manual admin work by 60%.",
@@ -249,7 +246,6 @@ export const experience = [
     ],
   },
   {
-    /* ⚠️ Résumés disagree on the end date: one says Oct 2025, the other Aug 2025. */
     role: "Machine Learning Researcher",
     company: "AI4ALL",
     period: "May 2025 — Oct 2025",

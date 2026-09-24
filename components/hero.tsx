@@ -13,6 +13,7 @@ import { SplitText } from "@/components/ui/split-text";
 import { useIntro } from "@/components/intro-provider";
 import { useCalmMotion } from "@/lib/use-media-query";
 import { EASE_OUT } from "@/lib/motion";
+import { asset } from "@/lib/asset";
 import { site } from "@/content/site";
 
 export function Hero() {
@@ -115,7 +116,7 @@ export function Hero() {
           {site.resume && (
             <Magnetic strength={0.18}>
               <a
-                href={site.resume}
+                href={asset(site.resume)}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="inline-flex items-center gap-2 rounded-full border border-rose/45 px-7 py-3.5 text-sm text-fg transition-colors hover:border-rose hover:text-rose"

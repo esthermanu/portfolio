@@ -13,6 +13,7 @@ import { useCallback, useRef, useState } from "react";
 import { usePointerFine, useCalmMotion } from "@/lib/use-media-query";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
+import { asset } from "@/lib/asset";
 import { MediaLightbox } from "@/components/ui/media-lightbox";
 import type { LightboxMedia } from "@/components/ui/media-lightbox";
 import { EASE_OUT } from "@/lib/motion";
@@ -264,8 +265,8 @@ function Thumb({
        simply rests on its poster frame. */
     return (
       <video
-        src={p.video}
-        poster={p.image ?? undefined}
+        src={asset(p.video)}
+        poster={asset(p.image)}
         className="h-full w-full object-cover"
         muted
         loop
@@ -280,7 +281,7 @@ function Thumb({
   if (p.image) {
     return (
       <Image
-        src={p.image}
+        src={asset(p.image)}
         alt={`${p.title} screenshot`}
         fill
         sizes="(max-width: 768px) 100vw, 320px"

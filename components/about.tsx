@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
 import { useCalmMotion } from "@/lib/use-media-query";
+import { asset } from "@/lib/asset";
 import { site } from "@/content/site";
 
 export function About() {
@@ -35,7 +36,7 @@ export function About() {
             >
               {site.portrait ? (
                 <Image
-                  src={site.portrait}
+                  src={asset(site.portrait)}
                   alt={site.name}
                   fill
                   sizes="(max-width: 768px) 100vw, 420px"

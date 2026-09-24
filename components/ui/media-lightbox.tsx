@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { asset } from "@/lib/asset";
 import { EASE_OUT } from "@/lib/motion";
 import { useCalmMotion } from "@/lib/use-media-query";
 
@@ -122,8 +123,8 @@ export function MediaLightbox({ media, onClose }: MediaLightboxProps) {
             {isVideo ? (
               <video
                 ref={videoRef}
-                src={media.src}
-                poster={media.poster ?? undefined}
+                src={asset(media.src)}
+                poster={asset(media.poster)}
                 controls
                 loop
                 playsInline
@@ -135,7 +136,7 @@ export function MediaLightbox({ media, onClose }: MediaLightboxProps) {
                  knowing the intrinsic size up front. */
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={media.src}
+                src={asset(media.src)}
                 alt={media.title ? `${media.title} — full size` : "Project image"}
                 className="max-h-[76vh] max-w-full rounded-xl border border-line-strong object-contain shadow-2xl shadow-black/70"
               />
